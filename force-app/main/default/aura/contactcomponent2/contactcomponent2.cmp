@@ -1,0 +1,11 @@
+<aura:component controller="fetchContactDetails"  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="contactList" type="contact[]"/>
+
+                <aura:handler name="init" value="{!this}" action="{!c.doInit}" />   
+
+     <aura:iteration items="{!v.contactList}" var="item">
+<c.contactcomponent item="{!v.item}"/>
+    </aura:iteration>
+
+    
+</aura:component>

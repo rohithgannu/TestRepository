@@ -1,0 +1,10 @@
+<apex:page standardController="Merc__c" >
+   <apex:form >
+       <apex:inputField value="{!Merc__c.Name}"/>
+       <apex:repeat value="{!Merc__c.Name}" var="a">
+           {a.line_item__r.Invoice__c.Name}
+       </apex:repeat>
+       <apex:commandButton action="{!save}" value="save"/>
+    </apex:form>
+    
+</apex:page>

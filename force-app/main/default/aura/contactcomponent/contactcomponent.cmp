@@ -1,0 +1,28 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    <aura:attribute name="item" type="Contact[]"/>
+
+  
+
+  
+ 
+   <div >
+
+            <dl >
+
+                <dt>Contact Name:</dt>
+
+                <dd >{!v.item.Name}</dd>
+
+                
+
+                       
+
+                </dl>
+
+    </div>
+
+    
+
+
+</aura:component>

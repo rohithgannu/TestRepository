@@ -1,0 +1,26 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="fieldLabel" type="String" />
+    <aura:attribute name="fieldName" type="String" />
+    <aura:attribute name="field" type="Object" />
+    <aura:attribute name="fieldValue" type="String" />
+    <aura:attribute name="radiofield" type="String" />
+    <aura:attribute name="selected" type="boolean" />
+    <aura:attribute name="masterData" type="Object"/>
+    <aura:attribute name="data" type="list"/>
+    <aura:attribute name="dupData" type="list"/>
+    
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    
+    <aura:registerEvent name="mergeEventData" type="c:MergeEvent"/>
+    
+    <aura:if isTrue="{!v.fieldValue != null }">
+        <div class="slds-truncate slds-p-left_medium slds-p-around_small">
+            
+            <lightning:input type="radio"  name="{!v.fieldLabel}" checked="{!v.selected}" value="{!v.fieldValue}" label="{!v.fieldValue}" onchange="{!c.onChange}"/>
+            
+        </div>      
+    </aura:if> 
+    
+</aura:component>

@@ -1,0 +1,11 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    <aura:attribute name="name1" type="Integer"/>
+    <aura:attribute name="name2" type="Integer"/>
+    <aura:attribute name="sum" type="Integer"/>
+        <ui:InputNumber label="enter a number" value="{!v.name1}"  />
+         <ui:InputNumber label="enter a number" value="{!v.name2}"   />
+    <ui:button label="Click me" press="{!c.getInput}"/><br/>
+    <ui:outputNumber value="{!v.sum}"/>
+    
+</aura:component>

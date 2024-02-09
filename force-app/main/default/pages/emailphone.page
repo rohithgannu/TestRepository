@@ -1,0 +1,11 @@
+<apex:page controller="testController">
+    <apex:form id="myform">
+    <apex:pagemessages />
+    <apex:pageBlock id="myblock">
+        Email Address: <apex:inputText value="{!email}" id="email"/><br/><br/>
+        Phone :<apex:inputText value="{!phone}" id="phone"/><br/><br/>
+        <apex:commandButton value="Click me!" action="{!checkEmail}"
+         Oncomplete="javascript:top.window.opener.checkphone()" />
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

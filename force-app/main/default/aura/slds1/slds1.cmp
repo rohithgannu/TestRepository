@@ -1,0 +1,6 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <lightning:input type="text" label="first" />
+   
+    <lightning:input type="text" label="second"  aura:id="sample" />
+    <lightning:button onclick="{!c.toggle}" label="Toggle" />
+</aura:component>

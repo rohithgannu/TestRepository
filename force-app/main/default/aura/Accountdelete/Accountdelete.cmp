@@ -1,0 +1,20 @@
+<aura:component controller="AccountDelete2" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute type="Account[]" name="Accounts" />
+    <aura:handler name="init"  value="{!this}" action="{!c.myAction}"/>
+        <aura:handler name="cmpEvent" event="c:eventonaccount" action="{!c.handleComponentEvent}"/>
+
+     <table>
+         <tr>
+         <th>Name</th>
+         <th>Id</th></tr>
+         <tr>
+         <aura:iteration items="{!v.Accounts}" var="con">
+            
+             <c:accountparent accs="{!con}"/>
+             
+             </aura:iteration>
+                         </tr>
+    </table>                                              
+                                                   
+                                          
+</aura:component>

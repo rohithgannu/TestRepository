@@ -1,0 +1,5 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+	 <ui:inputText aura:id="name" label="Enter Name:"/>
+    <ui:button  aura:id="button" label="Click me" press="{!c.myAction}"/><br/>
+    <ui:outputText aura:id="outName" class="field" value=" " />
+</aura:component>

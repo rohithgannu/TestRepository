@@ -1,0 +1,10 @@
+<apex:page >
+<apex:form >
+<apex:inputtext onclick="rohith()"/>
+<script>
+function rohith(){
+alert("hello rohith");
+}
+ </script>
+ 
+ </apex:form></apex:page>

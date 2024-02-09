@@ -1,0 +1,18 @@
+<apex:page standardcontroller="Account" extensions="accountconatctvf">
+ 
+ 
+  <apex:form >
+  <apex:pageblock >
+  <apex:repeat value="{!accList}" var="a">
+  {!a.Name}<br/>
+  <apex:repeat value="{!a.contacts}" var="con">
+  {!con.Name}<br/>
+  {!con.id}
+  
+  </apex:repeat>
+  </apex:repeat>
+  <apex:commandButton value="show conatcts" action="{!showall}"/>
+
+ </apex:pageblock></apex:form>
+
+</apex:page>

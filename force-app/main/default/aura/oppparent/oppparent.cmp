@@ -1,0 +1,23 @@
+<aura:component controller="Oppdetails" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute type="Opportunity[]" name="opps" />
+    <aura:handler name="init"  value="{!this}" action="{!c.myAction}"/>
+    <aura:attribute name="messageFromEvent" type="String"/>
+        <aura:handler name="cmpEvent" event="c:eventonchild" action="{!c.handleComponentEvent}"/>
+
+     <table>
+         <tr>
+         <th>Name</th>
+         <th>AccountName</th>
+         <th>Type</th>
+         <th>Probability</th></tr>
+         <tr>
+         <aura:iteration items="{!v.opps}" var="opp">
+            
+             <c:oppchild opps="{!opp}"/>
+             
+             </aura:iteration>
+                         </tr>
+    </table>                                              
+                                                   
+               The selected opportunity is: "{!v.messageFromEvent}"                        
+</aura:component>

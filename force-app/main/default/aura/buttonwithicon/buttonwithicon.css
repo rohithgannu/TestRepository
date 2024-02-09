@@ -1,0 +1,10 @@
+.THIS .slds-input__icon {
+ color : white;
+ background-color : blue;
+    height:150%;
+    width:80%;
+}
+.THIS .slds-lookup__search-input slds-input {
+   padding-left :  .75rem;
+   padding-right : .75rem;
+}

@@ -1,0 +1,17 @@
+<apex:page standardController="account" extensions="threeboxesclass">
+   <apex:form >
+       Name <apex:inputText value="{!searchname}" label="Input"/>
+       Type <apex:inputText value="{!searchtype}" label="Input"/>
+       Industry<apex:inputText value="{!searchindustry}" label="Input"/>
+       <apex:commandButton value="Search records" action="{!search}"/>
+       <apex:commandButton value="Clear records" action="{!clear}"/>
+       <apex:pageBlock title="Search Result">
+           <apex:pageBlockTable value="{!acc}" var="a">
+               <apex:column value="{!a.id}"/>
+               <apex:column value="{!a.name}"/>
+               <apex:column value="{!a.Industry}"/>
+               <apex:column value="{!a.Type}"/>
+           </apex:pageBlockTable>
+       </apex:pageBlock>
+   </apex:form>
+</apex:page>

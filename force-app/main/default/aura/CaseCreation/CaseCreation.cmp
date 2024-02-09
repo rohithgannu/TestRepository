@@ -1,0 +1,51 @@
+<aura:component controller="createcase1" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="phn2" type="boolean" default="false"/>
+    <aura:attribute name="case" type="case" default="{'sobjectType': 'Case',
+                         'Phone__c': '',
+                         'Subject': '',
+                         'Type': '', 
+                         'Origin': '',
+                          'Status' : ''
+                       }"/>
+    
+        <lightning:input aura:Id="Field1" name="Phone" type="text" value="{!v.case.Phone__c}" label="Phone" required="true" />
+    <aura:if isTrue="{!v.phn2.Phone__c}">
+        phone number already exists
+  </aura:if> 
+    
+    <lightning:input aura:Id="Field" name="Subject" type="text" value="{!v.case.Subject}" label="subject"/>
+          <aura:attribute name="options" type="List" default="[
+    {'label': 'Mechanical', 'value': 'Mech'},
+    {'label': 'Electrical', 'value': 'Electrical'},
+    {'label': 'Eletronic', 'value': 'Electronic'},
+    {'label': 'Structural', 'value': 'Struct'},
+      {'label': 'Others', 'value': 'Others'}                                                         
+                                                              
+    ]"/>
+    <aura:attribute name="selectedVal" type="List" default=""/>
+    
+    <div>
+
+     <lightning:checkboxGroup name="Checkbox Group"
+                                 label="Type"
+                                 options="{! v.options }"
+                                 value="{! v.selectedVal }"
+                                 onchange="{! c.handleChange }"/>
+    </div>
+    
+        <lightning:select aura:Id="Field" name="Status"  value="{!v.case.Status}" label="Status" required="true">
+       <option value="">choose one...</option>
+        <option value="New">New</option>
+        <option value="Working">Working</option>
+        <option value="Escalated">Escalated</option>
+    </lightning:select>
+    <lightning:select aura:Id="Field" name="Origin"  value="{!v.case.Origin}" label="Origin" required="true">
+       <option value="">choose one...</option>
+        <option value="Phone">Phone</option>
+        <option value="Email">Email</option>
+        <option value="web">Web</option>
+         </lightning:select>
+        <lightning:button aura:Id="Field" label="save" onclick="{!c.save}"/>
+    <lightning:button aura:Id="Field" label="cancel" onclick="{!c.cancel}"/>
+    
+</aura:component>

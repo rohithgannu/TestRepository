@@ -1,0 +1,14 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	 <aura:attribute name="selected" type="string" default="How would you rate your experience at Absyz ?"/>
+   {!v.selected}
+ <lightning:select aura:id="select" name="select" label="Answers"  onchange="{!c.call}">
+       <option value="">Select Field....</option>
+       <option value="Very satisfied">Very satisfied</option>
+       <option value="satisfied">satisfied</option>
+       <option value="Indifferent">Indifferent</option>
+      <option value="Unsatisfied">Unsatisfied</option>
+      <option value="Very Unsatisfied">Very Unsatisfied</option>
+    
+   </lightning:select>
+   
+</aura:component>

@@ -1,0 +1,14 @@
+<apex:page standardController="Contact" extensions="Accountcontactform">
+
+   <apex:form >
+<apex:outputLabel value="FirstName :">
+     <apex:inputField value="{!newCon.FirstName}"/>
+     </apex:outputLabel> <br/>
+     <apex:outputLabel value="LastName :">
+     <apex:inputField value="{!newCon.LastName}"/>
+     </apex:outputLabel> 
+     <apex:commandButton value="save" action="{!save}" rerender=""/>
+
+   </apex:form>
+  
+</apex:page>

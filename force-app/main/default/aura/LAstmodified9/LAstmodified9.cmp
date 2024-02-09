@@ -1,0 +1,37 @@
+<aura:component controller="accountsclass" implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}"/>
+    <aura:attribute name="accounts" type="Account[]" />
+    <table>
+        <tr>
+            <td>
+                <b>Name</b>
+            </td>
+            <td>
+                <b>Phone</b>
+            </td>
+            <td>
+                <b>AnnualRevenue</b>
+            </td>
+             <td>
+                <b>Type</b>
+            </td>
+             <td>
+                <b>Rating</b>
+            </td>
+             <td>
+                <b>Website</b>
+            </td>
+        </tr>
+        <aura:iteration items="{!v.accounts}" var="accs1" >
+            <tr>  
+                 <td> <div>{!accs1.Name}</div>  </td>
+                 <td> <div>{!accs1.Phone}</div>  </td>
+                  <td> {!accs1.AnnualRevenue}  </td>
+                 <td> {!accs1.Type}  </td>
+                 <td> {!accs1.Rating}  </td>
+                 <td> {!accs1.Website}  </td>
+               
+            </tr> 
+         </aura:iteration>                                           
+    </table>    
+</aura:component>

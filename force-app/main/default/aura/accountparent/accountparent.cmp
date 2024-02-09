@@ -1,0 +1,11 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute type="Account" name="accs" />
+    <aura:registerEvent name="cmpEvent" type="c:eventonaccount"/>
+    <tr>
+        <td>
+            {!v.accs.Name} </td>
+        <td>{!v.accs.Id}</td>
+        <lightning:button onclick="{!c.deletedetails}" label="delete" />
+    </tr>
+    
+</aura:component>

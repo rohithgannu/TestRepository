@@ -1,0 +1,23 @@
+<aura:component implements="force:appHostable">
+    <aura:attribute name="item" type="Camping_Item__c"/>
+    <form>
+     <p>The Item is: 
+         <ui:outputText value ="{!v.item}" />
+    </p>
+    <p>Name:
+        <ui:outputText value="{!v.item.Name}"/>
+    </p>
+     <p>Packed:
+        <lightning:input type="checkbox" default="false" checked="{!v.item.Packed__c}"/>
+    </p>
+    <p>Price:
+    	<ui:outputCurrency value="{!v.item.Price__c}"/>
+    </p>
+    <p>Quantity:
+		<ui:outputNumber value="{!v.item.Quantity__c}"/>
+    </p>
+    <p>
+    	<lightning:button label="Packed!" onclick="{!c.packItem}"/>
+    </p>
+    </form>
+</aura:component>

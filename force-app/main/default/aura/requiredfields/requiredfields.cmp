@@ -1,0 +1,23 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="final" type="boolean" default="false"/>
+    <aura:attribute name="text" type="string"/>
+    <aura:attribute name="text1" type="string"/>
+    <aura:attribute name="selected" type="string"/>
+    <aura:attribute name="phone" type="Integer"/>
+    <aura:attribute name="Email" type="string"/>
+    <aura:attribute name="txt" type="string" default="required fields cannot be empty"/>
+    <lightning:input aura:id="Type1" name="First Name" label="enter first name"  value="{!v.text}"/>
+    <lightning:input aura:id="Type1" name="Last Name" label="enter Last name"  value="{!v.text1}" />
+     <lightning:select aura:id="Type1" name="Gender" label="Select Field" value="{!v.selected}" >
+       <option value="">Select Field....</option>
+       <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          </lightning:select>
+         <lightning:input type="tel" label=" phone" name="phone1"  value="{!v.phone}"/>
+         <lightning:input type="email" label="email" name="email1" value="{!v.Email}"/>
+         <lightning:button variant="brand" label="validate" title="validate" onclick="{! c.showToast }"/>
+<aura:if isTrue="{!v.final}">
+    
+    </aura:if>
+       
+</aura:component>

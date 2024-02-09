@@ -1,0 +1,19 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:attribute name="selected" type="boolean" default="true"/>
+   
+ <lightning:select name="select1" label="Select Field" value="{!v.selected}">
+       <option value="">Select Field....</option>
+       <option value="Text">Text</option>
+       <option value="Number">Number</option>
+       <option value="CheckBox">CheckBox</option>
+   </lightning:select>
+   <aura:if isTrue="{!v.selected == 'Text'}">
+       <lightning:input type="text" name="input1" label="Enter some text" />
+   </aura:if>
+   <aura:if isTrue="{!v.selected == 'Number'}">
+        <lightning:input type="number" name="input1" label="Enter a number" />
+   </aura:if>
+   <aura:if isTrue="{!v.selected == 'CheckBox'}">
+       <lightning:input type="checkbox" label="Basic option" name="input1"/>
+   </aura:if>
+</aura:component>

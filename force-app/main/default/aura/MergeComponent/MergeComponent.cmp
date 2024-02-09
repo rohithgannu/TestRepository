@@ -1,0 +1,217 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:isUrlAddressable" access="global"
+                controller="BulkMergeClass">
+    
+    <aura:attribute name="openEditSiteModal" type="boolean" default="false"/>
+    <aura:attribute name="onNext" type="boolean" default="true"/>
+    <aura:attribute name="onMerge" type="boolean" default="false"/>
+    <aura:attribute name="disabledValue" type="boolean" default="false"/>
+    <aura:attribute name="disableMerge" type="boolean" default="true"/>
+    <aura:attribute name="showSpinner" type="boolean" default="false"/>
+    <aura:attribute name="data" type="List"/>
+    <aura:attribute name="excludeData" type="List"/>
+    <aura:attribute name="excludeData1" type="List"/>
+    <aura:attribute name="sobjectLabel" type="String"/>
+    <aura:attribute name="recordName" type="String"/>
+    <aura:attribute name="masterAccount" type="sobject"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="selectedValues" type="List"/>
+    <aura:attribute name="countofValues" type="Integer"/>
+    <aura:attribute name="selectedRows" type="List"/>
+    <aura:attribute name="selectedMergeRows" type="List"/>
+    <aura:attribute name="ProgressBar" type="String" default="step-1"/>
+    <aura:attribute name="masterData" type="object"/>
+    <aura:attribute name="masterDataSample" type="sobject"/>
+    <aura:attribute name="masterId" type="Id"/>
+    
+    <aura:attribute name="preSelectedValues" type="List"/>
+    <aura:attribute name="options" type="List" default="[]"/>
+    
+    <!--Static resource for scroll to top of Modal of onclick on Next -->
+    <ltng:require scripts="{!join(',',
+                           $Resource.fullcalendar_390  + '/fullcalendar390/lib/jquery.min.js',                           
+                           $Resource.fullcalendar_390  + '/fullcalendar390/lib/jquery-ui.min.js'
+                           
+                           )}"
+                  afterScriptsLoaded="{!c.init}" />  
+    
+    <aura:handler name="mergeEventData" event="c:MergeEvent" action="{!c.getMergeData}"/>
+    
+    <!--Main Modal-->
+    <aura:if isTrue="{!v.openEditSiteModal}">        
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" 
+                 aria-modal="true" aria-describedby="modal-content-id-1" 
+                 class="slds-modal slds-fade-in-open">
+            <div  class="slds-modal__container">
+                
+                
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.hideModal }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                        Potential Duplicate Records</h2>
+                </header>
+                <!--Modal/Popup Box Body Starts here-->
+                <div aura:id="sample" class="slds-modal__content slds-p-around_medium slds-is-relative scrollContent" id="modal-content-id-1">
+                    <aura:if isTrue="{!v.showSpinner}">
+                        <lightning:spinner alternativeText="Loading" size="medium" />
+                    </aura:if>
+                    <lightning:layout multipleRows="true">
+                        <aura:if isTrue="{!v.onNext}">
+                            <lightning:layoutItem size="3"/>
+                            <lightning:layoutItem size="6">
+                 <!--Dual List box for showing the required fields-->                
+                                <lightning:dualListbox name="fields"
+                                                       label= "Select Fields"
+                                                       sourceLabel="Available"
+                                                       selectedLabel="Selected"
+                                                       size="3"
+                                                       fieldLevelHelp="Select your preferred Fields"
+                                                       options="{!v.options}"
+                                                       value="{!v.preSelectedValues}"
+                                                       onchange="{! c.handleChange }"/>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="3"/>
+                            <lightning:layoutItem size="12">
+                                <div class="slds-p-around_medium">
+                                    <h1>{!v.sobjectLabel} ({!v.countofValues}) </h1>
+                                </div>
+                                
+                            </lightning:layoutItem>
+                            
+                            <lightning:layoutItem size="12">
+                                <div class="slds-p-around_medium">
+                                    <h1>Note: Uncheck the records to exclude from Merge </h1>
+                                </div>
+                                
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12">
+                                
+                                <lightning:datatable
+                                                     aura:id="partnerTable"
+                                                     columns="{! v.columns }"
+                                                     data="{! v.data }"
+                                                     keyField="Id"
+                                                     selectedRows="{!v.selectedRows}"                       
+                                                     onrowselection="{! c.handleRowAction }"/>
+                                
+                                
+                            </lightning:layoutItem>
+                        </aura:if>
+                        <aura:if isTrue="{!v.onMerge}">
+                            
+                            <lightning:layoutItem size="5"/>
+                            <lightning:layoutItem size="3">
+                                <div>
+                                    <p style="font-size:x-large;"> Compare Records</p> 
+                                </div>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="4"/>
+                            <lightning:layoutItem size="2"/>
+                            <lightning:layoutItem size="10">
+                                <div class="slds-p-bottom_x-large">
+                                    When you merge, the master record is updated with the values you choose, and relationships to other items are shifted to the master record.
+                                    <!--     <h1>Note: Please select one Master record</h1>-->
+                                </div>
+                                
+                            </lightning:layoutItem>
+                            
+                            <lightning:layoutItem class="slds-scrollable_x " size="12">
+                                <lightning:layoutItem>
+                                  <table class="slds-table slds-table_bordered">
+                                        <thead>
+                                            <tr class="slds-text-title_caps">
+                                                <th scope="col" class="headcol">
+                                                    <div class="slds-truncate"> </div>
+                                                </th>
+                                                <aura:iteration items="{!v.excludeData}" var="item">
+                                                    <th scope="col">
+                                                        <div class="slds-truncate slds-p-left_medium" >{!item.Name}</div>
+                                                    </th>
+                                                </aura:iteration>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr >
+                                                <td class="headcol">   
+                                                    <div class="slds-truncate slds-p-around_small" style="text-transform: uppercase;" title="Master Record">Master Record</div> 
+                                                </td> 
+                                                <aura:iteration items="{!v.excludeData}" var="item" indexVar="keyvalue"> 
+                                                    <td>
+                                                        
+                                                        <div class="slds-truncate slds-p-left_medium slds-p-around_small">
+                                                            <lightning:input type="radio" checked="{!keyvalue==0}" name="Master Record" value="{!item.Id}" label="Use as a Master" onchange="{!c.onMasterChange}"/>
+                                                        </div>   
+                                                    </td> 
+                                                </aura:iteration>
+                                            </tr>
+                                            
+                                            <aura:iteration items="{!v.columns}" var="col" indexVar="key">
+                                                
+                                                <tr >
+                                                    <td class="headcol">
+                                                        <div class="slds-truncate slds-p-around_small " style="text-transform: uppercase;" title="{!col.label}">{!col.label}</div>
+                                                    </td>
+                                                    <aura:iteration items="{!v.excludeData}" var="item" indexVar="keyData">
+                                                        <td>
+                                                            
+                                                            <c:MergeChild fieldLabel="{!col.fieldName}" field="{!item}" fieldName="{!col.label}"  selected="{!keyData==0}" masterData="{!v.masterData}" data="{!v.data}"/>
+                                                        </td>   
+                                                    </aura:iteration>
+                                                </tr>   
+                                            </aura:iteration>
+                                            
+                                        </tbody>
+                                    </table>
+                                </lightning:layoutItem>
+                                
+                            </lightning:layoutItem>  
+                        </aura:if>
+                    </lightning:layout>
+                    
+                </div>
+                <!--Modal/Popup Box Footer Starts here-->
+                <footer class="slds-modal__footer">
+                    <aura:if isTrue="{!v.onNext}" >
+                        
+                        <lightning:button variant="brand"
+                                          label="Next"
+                                          title="Next"
+                                          onclick="{!c.nextDetails}"
+                                          disabled="{!v.disabledValue}"/>
+                    </aura:if>
+                    <aura:if isTrue="{!v.onMerge}" >
+                        <lightning:layout multipleRows="true">
+                            <lightning:layoutItem alignmentBump="right">   
+                                <lightning:button 
+                                                  label="Back"
+                                                  title="Back"
+                                                  onclick="{!c.getBack}"/>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem alignmentBump="left">   
+                                <lightning:button variant="brand"
+                                                  label="Merge"
+                                                  title="Merge"
+                                                  
+                                                  onclick="{!c.saveDetails}"/>
+                            </lightning:layoutItem>
+                            
+                        </lightning:layout>
+                    </aura:if>
+                    <lightning:progressIndicator currentStep="{!v.ProgressBar}" type="base" variant="shaded">
+                        
+                        <lightning:progressStep label="View Duplicates" value="step-1"/>
+                        
+                        <lightning:progressStep label="Select Master" value="step-2"/>
+                        
+                        
+                    </lightning:progressIndicator>
+                    
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+</aura:component>

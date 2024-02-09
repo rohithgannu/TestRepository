@@ -1,0 +1,16 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="Items" type="Camping_Item__c[]"/>
+    <aura:attribute name="newItem" type="Camping_Item__c" default="{'sobjectType':'Camping_Item__c',
+                                                                   'Name':'',
+                                                                   'Packed__c':'',
+                                                                   'Price__c':0,
+                                                                   'Quantity__c':0}"/>
+   <form class="slds-form--stacked">   
+    <Lightning:input aura:id="f" label="Name"  type="text"   value="{!v.newItem.Name}" />
+    <Lightning:input aura:id="f" label="Packed" type="checkbox" default="false" value="{!v.newItem.Packed__c}"/>
+    <Lightning:input aura:id="f" label="Price"   type="currency" value="{!v.newItem.Price__c}"/>
+    <Lightning:input aura:id="f" label="Quantity" type="Number" min="1" value="{!v.newItem.Quantity__c}"/>
+    <Lightning:button label="Create" onclick="{!c.clickCreateItem}"/>
+    </form>
+   
+</aura:component>

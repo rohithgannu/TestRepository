@@ -1,0 +1,18 @@
+<apex:page standardController="Account" extensions="accountstab">
+ <apex:form >
+  <apex:pageblock >
+  <apex:repeat value="{!accList}" var="acc">
+  {!acc.createddate} 
+  {!acc.Name}<br/>
+  <apex:repeat value="{!acc.contacts}" var="cont">
+  {!cont.name}<br/>
+  {!cont.id}
+  </apex:repeat>
+  </apex:repeat>
+  <apex:commandButton value="show accounts" action="{!showall}"/>
+
+ </apex:pageblock></apex:form>
+
+  
+  
+</apex:page>

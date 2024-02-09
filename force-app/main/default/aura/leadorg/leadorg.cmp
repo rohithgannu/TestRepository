@@ -1,0 +1,18 @@
+<aura:component controller="CreateCandidateRecord" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="candidate" type="Lead" default="{'sobjectType': 'Lead',
+                         'LastName': '',
+                         'Phone': '',
+                         'Email': '', 
+                         'Company': '',
+                          'Status' : ''
+                       }"/>
+    
+        <lightning:input aura:Id="LeadField" name="LastName" type="text" value="{!v.candidate.LastName}" label="Name"/>
+        <lightning:input aura:Id="LeadField" name="Company" type="text" value="{!v.candidate.Company}" label="Company"/>
+        <lightning:input aura:Id="LeadField" name="Email" type="Email" value="{!v.candidate.Email}" label="Email"/>
+        <lightning:input aura:Id="LeadField" name="Phone" type="Phone" value="{!v.candidate.Phone}" label="Phone"/>
+        <lightning:input aura:Id="LeadField" name="Status" type="text" value="{!v.candidate.Status}" label="Status"/>
+        <lightning:button aura:Id="LeadField" label="save" onclick="{!c.save}"/>
+    
+   
+</aura:component>

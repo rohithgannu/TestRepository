@@ -1,0 +1,8 @@
+<aura:component controller="condetails" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="search1" type="string"/>
+    <aura:registerEvent name="cmpEvent" type="c:eventoncontact"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <tr>
+    <lightning:input value="{!v.search1}" type="text"/>
+    </tr>
+</aura:component>

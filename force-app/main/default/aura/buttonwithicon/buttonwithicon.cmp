@@ -1,0 +1,29 @@
+<aura:component implements="forceCommunity:searchInterface">
+
+ <lightning:layout >
+            <lightning:layoutItem size="3" padding="around-small">
+                 <div class="img " >
+                    <img  style="height: 100px;" src="/resource/My_Images/Assets/img1.png"   />   
+                  <h1>Draft a New IAP</h1>
+                </div> 
+            </lightning:layoutItem>
+            <lightning:layoutItem size="3" padding="around-small">
+                <div class="img1" >
+                    <img style="height: 100px;" src="/resource/My_Images/Assets/img1.png"   />  
+                   <h1>Send IAP to Team Member for Acknowledgement</h1>
+                </div> 
+            </lightning:layoutItem>
+            <lightning:layoutItem size="3" padding="around-small">
+               <div class="img2" ><img style="height: 100px;" src="/resource/My_Images/Assets/img1.png"  align="middle" />      
+                <h1>Submit IAP Progress</h1>
+                </div>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="3" padding="around-small">
+                <div class="img3"  style="text-align: left">
+                    <img style="height: 100px;" src="/resource/My_Images/Assets/img1.png" />  
+                    <h1>Complete IAP Closure Form</h1>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+
+</aura:component>

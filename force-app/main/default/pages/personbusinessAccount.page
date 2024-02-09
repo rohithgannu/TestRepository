@@ -1,0 +1,37 @@
+<apex:page controller="personbusinessAccount" >
+ <apex:form >
+     <apex:pageblock id="aa">
+<apex:pageBlockSection >
+   
+ <table><tr><apex:inputcheckbox label="person" value="{!person}">
+ 
+    <apex:actionSupport event="onchange" rerender="aa" action="{!newmeth}"/>
+    </apex:inputcheckbox></tr></table>
+    <table><tr><apex:inputcheckbox label="business" value="{!business}">
+    <apex:actionSupport event="onchange" rerender="aa" action="{!meth}"/>
+    </apex:inputcheckbox></tr></table>
+   </apex:pageBlockSection>
+        
+   <apex:pageBlockSection rendered="{!business}">
+       
+       <table> <tr><apex:inputfield value="{!acc.Name}"/></tr>
+       <tr><apex:inputfield value="{!acc.Industry}"/></tr>
+      
+       <tr><apex:inputfield value="{!acc.numberofemployees}"/></tr>
+      <tr> <apex:inputfield value="{!acc.RevenueGenerated__c}"/></tr>
+      </table>
+         </apex:pageBlockSection>    
+        <apex:pageBlockSection rendered="{!person}">
+      <table><tr><apex:inputfield value="{!acc.Name}"/></tr>
+             <tr><apex:inputfield value="{!acc.Age__c}"/></tr>           
+            <tr><apex:inputfield value="{!acc.Gender__c}"/></tr>
+             <tr><apex:inputfield value="{!acc.DateofBirth__c}"/></tr>
+             </table>
+         </apex:pageBlockSection>
+         <apex:pageBlockSection >
+             <apex:commandButton value="save" action="{!save}"/>
+           
+         </apex:pageBlockSection>
+         </apex:pageblock>
+    </apex:form>    
+</apex:page>

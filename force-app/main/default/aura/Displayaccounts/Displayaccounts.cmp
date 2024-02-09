@@ -1,0 +1,26 @@
+<aura:component controller="accountdeleteclass" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="Accountlist" type="List" />
+
+                <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>   
+      
+    <div>
+        <table>
+    <tr>
+    <td>
+        id
+        </td>
+        <td>
+        name
+        </td>
+        </tr>
+    
+    
+    
+    <aura:iteration items="{!v.Accountlist}" var="item">
+    <c:Displayaccounts_child AccountName="{!item}"/>
+        <lightning:button variant="brand" label="delete" onclick="{v.click}"/>
+    </aura:iteration>
+     </table>
+    </div>
+
+</aura:component>

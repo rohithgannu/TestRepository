@@ -1,0 +1,87 @@
+<aura:component controller="AccountDelete2" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute type="Account" name="accs" />
+    <aura:attribute type="Contact[]" name="cont"/>
+    <aura:attribute type="Contact[]" name="newcontact" default="{'sobjectType': 'Contact',
+                         'Firstname': '',
+                         'Lastname': ''
+                         }"/>
+    <table>
+    <tr>
+        <td>{!v.accs.Name} </td>
+        <td>{!v.accs.Id}</td>
+        <td>{!v.accs.Phone}</td>
+        <lightning:buttonIcon iconName="utility:down" variant="bare" onclick="{! c.display }"/>
+    </tr>
+    </table>
+    
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+         <div class="slds-m-around--xx-large">
+                <aura:if isTrue="{!v.isOpen}">
+                 <div role="dialog" tabindex="-1" aria-labelledby="header99" class="slds-modal slds-fade-in-open ">
+                    <div  aur:id="btnCancel" class="slds-modal__container">
+                  <!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+                      <div class="slds-modal__header">
+                          
+                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.closeModel}">
+                    <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="header99" class="slds-text-heading--medium">ContactList</h2>
+                        <lightning:buttonIcon iconName="utility:close" variant="bare" onclick="{! c.removeCSS }"  class="slds-button slds-button--neutral .slds-modal__close"/>   
+                  <!--###### MODAL BOX FOOTER Part Start From Here ######-->
+                      <div class="slds-modal__footer">
+                        <aura:iteration items="{!v.cont}">
+                            <table>
+                                <tr><td>Id</td>
+                                    <td><Lightning:input name="id" type="Id" id="{!cont.id}"/></td>
+                                 <td>FirstName</td>
+                                 <td><Lightning:input name="FirstName" type="text" value="{!v.cont.Firstname}"/></td>
+                                 <td>LastName</td>
+                                 <td><Lightning:input name="LastName" type="text" value="{!v.cont.Lastname}"/></td>
+                                </tr>
+                              </table>
+                          </aura:iteration>
+                        <button class="slds-button slds-button--neutral" onclick="{!c.closeModel}" >Cancel</button>
+                        <button class="slds-button slds-button--brand" onclick="{!c.createnew}">Create new</button>
+                        
+        
+                      </div>
+                      </div>
+                            
+                    </div>
+                   </div>
+                </aura:if>
+             
+         </div>
+     <aura:attribute name="isTrue" type="boolean" default="false"/>
+         <div class="slds-m-around--xx-large">
+                <aura:if isTrue="{!v.isTrue}">
+                 <div role="dialog" tabindex="-1" aria-labelledby="header99" class="slds-modal slds-fade-in-open ">
+                    <div class="slds-modal__container">
+                  <!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+                      <div class="slds-modal__header">
+                          
+                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.closeModel}">
+                    <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="header99" class="slds-text-heading--medium">ContactList</h2>
+                  <!--###### MODAL BOX FOOTER Part Start From Here ######-->
+                      <div class="slds-modal__footer">
+                         <table>
+                             <tr><td>FirstName</td>
+                                 <td><Lightning:input name="FirstName" type="text" value="{!v.newcontact.Firstname}"/></td>
+                                 <td>LastName</td>
+                                 <td><Lightning:input name="LastName" type="text" value="{!v.newcontact.Lastname}"/></td>
+                              
+                        <button class="slds-button slds-button--brand" onclick="{!c.save}">Save</button>
+                                                                                               </tr>                                                                 
+                          </table>
+                      </div>
+                      </div>
+                            
+                    </div>
+                   </div>
+                </aura:if>
+             
+         </div>
+    
+</aura:component>

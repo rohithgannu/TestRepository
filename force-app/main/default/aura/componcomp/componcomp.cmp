@@ -1,0 +1,5 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    <lightning:button name="button1"  label="you have clicked the button" onclick="{!c.showmsg}"/>
+    <aura:registerEvent name="Navigate" type="c:NavigateToC2"/>
+</aura:component>

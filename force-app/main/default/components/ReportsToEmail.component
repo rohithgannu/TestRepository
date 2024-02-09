@@ -1,0 +1,32 @@
+<apex:component controller="ReportsToEmailController" access="global">
+    <apex:attribute name="ReportId" description="Report ID" type="Id" assignTo="{!rptId}"/>
+    <apex:outputPanel >         
+        <table style="width: 100%;">
+            <thead>                 
+                <apex:repeat value="{!ReportResult.reportMetadata.detailColumns}" var="colName"> 
+ 
+                    <!-- reportMetadata is a class where it contains metadata of a report.
+                        DetailColumns is a method of ReportMetadata class, it returns the API names (Columns Names) 
+                            for the fields that contain detailed data-->
+ 
+                    <th><apex:outputText value="{!ReportResult.reportExtendedMetadata.detailColumnInfo[colName].label}"/></th>
+ 
+                    <!-- reportExtendedMetadata is class where it contains Report extended metadata and
+                            it provides data type and label information.
+                        detailColumnInfo is a method of reportExtendedMetadata class, it returns map of columns names 
+                            and its label to Display as Header -->
+ 
+                </apex:repeat> 
+            </thead> 
+            <tbody> 
+                <apex:repeat value="{!ReportResult.factMap['T!T'].rows}" var="row" rows="999"> 
+                    <!-- Here we will get entire data of each row and T refers to the Row -->
+                    <tr> <apex:repeat value="{!row.dataCells}" var="cell">
+                        <!-- Here we will get data of each cell and displayed -->
+                        <td><apex:outputText value="{!cell.label}"/></td>
+                        </apex:repeat> </tr> 
+                </apex:repeat>
+            </tbody>
+        </table>
+    </apex:outputPanel> 
+</apex:component>

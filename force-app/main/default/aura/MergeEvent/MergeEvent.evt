@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="Merge template" >
+      <aura:attribute name="master" type="Object"/>
+    <!--<aura:attribute name="data" type="list"/>-->
+</aura:event>

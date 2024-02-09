@@ -1,0 +1,18 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:attribute name="textmsg" type="String" default="how's  weather today ?"  />
+    <br/>
+   
+    <center>{!v.textmsg}
+        <div>
+        <lightning:button  variant="Destructive" label="hot"  title="btn1" onclick="{! c.myAction }"/>
+ 
+<lightning:button  variant="Brand" label="cold" title="btn2" onclick="{! c.myAction5}"/>
+         <lightning:button  label="hazy" class="btn3" onclick="{! c.myAction2 }"/>
+        <lightning:button  variant="success" label="Rain" title="btn4" onclick="{! c.myAction3 }"/>
+        <lightning:button   label="windy" class="btn5" onclick="{! c.myAction4 }"/>
+        </div>
+    </center>
+
+  
+    
+</aura:component>
