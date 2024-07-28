@@ -1,0 +1,39 @@
+<template>
+<lightning-card icon-name="standard:contact" variant="base" title="Contacts List">
+    <div class="slds-p-around_medium">
+
+<lightning-layout  multiple-rows>
+    <lightning-layout-item padding="around-small" size="4"> 
+        <strong class="slds-text-heading_small">contact Name</strong>
+    </lightning-layout-item>
+    <lightning-layout-item  padding="around-small" size="4"> 
+        <strong class="slds-text-heading_small">contact Email</strong> 
+    </lightning-layout-item>
+    <lightning-layout-item  padding="around-small" size="4"> 
+        <strong class="slds-text-heading_small">contact Phone</strong> 
+    </lightning-layout-item>
+    <template for:each={contactsList} for:item="contact" for:index="key">
+<lightning-layout-item  key={contact.Id} padding="around-small" size="4"> 
+    
+        <p class="slds-text-heading_small">{contact.Name}</p>
+        </lightning-layout-item>
+        <lightning-layout-item  key={contact.Id} padding="around-small" size="4"> 
+        <p class="slds-text-heading_small">{contact.Email}</p>
+        </lightning-layout-item>
+        <lightning-layout-item  key={contact.Id} padding="around-small" size="4"> 
+        <p class="slds-text-heading_small" >{contact.Phone}</p>
+    
+</lightning-layout-item>
+    
+
+</template>
+</lightning-layout>
+</div>
+<lightning-button variant="brand" label="Refresh" slot="actions" onclick={handleClick}>
+</lightning-button>
+<div class="custom-progress-bar">
+    <lightning-progress-bar value=50></lightning-progress-bar>
+</div>
+   
+</lightning-card>
+</template>

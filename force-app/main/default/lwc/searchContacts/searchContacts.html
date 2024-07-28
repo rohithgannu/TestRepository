@@ -1,0 +1,25 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-card title="Contacts List" icon-name="standard:contact_list">
+    <div class="slds-m-around_medium">
+        <lightning-input type="search" label="search" onchange={searchFilter} class="slds-m-bottom_medium"></lightning-input>
+         <template if:true={contactsList}>
+           <lightning-datatable key-field="Id"
+                                 data={filteredContacts}
+                                 columns={columns}
+                                 sorted-direction={sortDirection}
+                                 sorted-by={sortBy}
+                                 onsort={handleSortdata}
+
+                                 >
+           </lightning-datatable>
+
+         </template>
+         <template if:true={error}>
+            <p class="slds-text-color_error">{error}</p>
+         </template>
+        
+
+    </div>
+</lightning-card>
+</template>

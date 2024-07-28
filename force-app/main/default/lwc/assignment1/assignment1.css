@@ -1,0 +1,43 @@
+.contact-card {
+    border: 1px solid #d8dde6;
+    border-radius: 4px;
+    padding: 10px;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+/*:host {
+    --slds-c-progress-bar-fill: red;
+}*//* myProgressBar.css 
+:host ::part(value) {
+    display: block;
+    background: red; 
+    height: 100%;
+}*/
+/*.slds-progress-bar__value {
+    display: none;
+    background: none;
+    height: 100%;
+}
+
+.slds-progress-bar__value {
+    display: inline-block;
+    background: limegreen !important;
+    height: 100%;
+}*/
+
+
+/*.bar .slds-progress-bar__value {
+    display: block;
+    background: #49d301 !important;
+    height: 100%;
+}*/
+
+/*:host {
+    --slds-c-progress-bar-color-background: var(--slds-g-color-brand-base-50, var(--lwc-progressBarColorBackgroundFill, rgb(37, 255, 26)));
+}*/
+
+.custom-progress-bar {
+    --slds-g-color-brand-base-50: limegreen; 
+    --lwc-progressBarColorBackgroundFill:limegreen;
+}
+
